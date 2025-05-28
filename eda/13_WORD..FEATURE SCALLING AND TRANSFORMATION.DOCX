@@ -1,0 +1,46 @@
+
+---
+
+## 🔄 **Feature Transformation**
+
+**🎯 Purpose:**
+Modify data to make it more suitable for modeling (e.g., normalize distribution, reduce skewness).
+
+**🛠️ Techniques:**
+
+* Log Transformation
+* Box-Cox Transformation
+* Square Root (√) Transformation
+
+**✨ Impact:**
+
+* Alters data distribution
+* Stabilizes variance
+* Reduces sensitivity to extreme values
+  ➡️ Leads to more **accurate predictions**
+
+---
+
+## 📏 **Feature Scaling**
+
+**🎯 Purpose:**
+Adjust the range of features so each contributes **equally** to the model.
+
+**🛠️ Techniques:**
+
+* Min-Max Scaling
+* Standardization (Z-score)
+
+**✨ Impact:**
+
+* Rescales feature magnitudes
+* Essential for **distance-based** algorithms (e.g., KNN, SVM)
+
+---
+
+### 🔁 In Short:
+
+* **Transformation** 👉 Changes **data nature**
+* **Scaling** 👉 Changes **data range**
+
+---
