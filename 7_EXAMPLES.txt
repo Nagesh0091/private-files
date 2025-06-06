@@ -1,0 +1,16 @@
+PROBABILITY CALCULATION 
+---
+
+### 🚚 **1. Delivery Time (Logistics)** 🚚
+
+You're managing a **logistics company**, and the **average delivery time** for packages is **3 days** with a **standard deviation** of **0.5 days**. You want to know the **probability** that a package will be delivered in **less than 2.5 days**. 📦⏳
+
+
+---
+---
+CONFIDENCE INTERVAL
+# 📚 New Real-life Example:
+
+A factory produces metal rods.  
+You collect a **sample of 50 rods** and measure their **weights** (in kilograms).
+---

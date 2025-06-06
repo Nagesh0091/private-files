@@ -1,0 +1,152 @@
+---
+# PPS:-
+
+import ppscore as pps
+pps.score(DATA,"SepalLengthCm","PetalLengthCm")
+
+---
+
+Z-SCORE CALCULATION:-
+
+FROM STATS IMPORT ZSCORE
+ZSCORE=ZSCORE(DATA["COLUMN"])
+
+---
+
+UPPER EXTREME AND LOWER EXTREME CALCULATION:-
+IQR=Q3-Q1
+UPPER EXTREME = Q3 + 1.5 * IQR
+LOWER EXTREME = Q1 - 1.5 * IQR
+
+---
+
+ISOLATION FOREST :-
+
+from sklearn.ensemble import IsolationForest
+ISO=IsolationForest(contamination=0.1,random_state=2)
+DATA["ANOMALY_SCORE"]=ISO.fit_predict(DATA.select_dtypes("number"))
+
+---
+
+WINSORIZATION:-
+
+# DEFINE PERCENTILE FOR CAPPING:
+import numpy as np
+LOWER_LIMIT=np.percentile(DATA_WINSOR["category_id"],5)
+UPPER_LIMIT=np.percentile(DATA_WINSOR["category_id"],90)
+DATA_WINSOR["category_id"]=np.clip(DATA_WINSOR["category_id"],LOWER_LIMIT,UPPER_LIMIT)
+
+---
+
+LOG TRANSFORMATION:-
+
+DATA_FOR_logTRANSFORMATION["category_id"]=np.log1p(DATA_FOR_logTRANSFORMATION["category_id"])
+
+---
+
+BOXCOX TRANSFORMATION:-
+
+from scipy.stats import boxcox
+# Apply Box-Cox
+DATA_FOR_boxcoxTRANSFORMATION['category_id'], lambda_val = boxcox(DATA_FOR_boxcoxTRANSFORMATION['category_id'])
+
+---
+
+FEATURE CREATION :-
+
+# BUT THE DISCOUNT VALUES IS ALREADY DIVIDED BY 100
+# DATA["DISCOUNT_AMOUNT"]=DATA["Discount"]*DATA["Sales"]
+DATA.insert(5, "DISCOUNT_AMOUNT", DATA["Discount"] * DATA["Sales"])
+
+---
+
+PCA:-
+
+#  PRINCIPAL COMPONENT ANALYSIS:
+from sklearn.decomposition import PCA
+PCA=PCA()
+PCA_COMPONENT=PCA.fit_transform(STANDARD_DATA)
+
+---
+
+TSNE:-
+
+from sklearn.manifold import TSNE
+TSNA_DATA=TSNE(n_components=2).fit_transform(x)
+TSNA_DATA
+
+---
+
+KNN:-
+
+#  Create KNN model
+from sklearn.neighbors import KNeighborsClassifier
+KNN = KNeighborsClassifier(n_neighbors=10)# TRY 4,5
+
+---
+
+k_means:-
+
+from sklearn.cluster import KMeans
+INERTIA=[]
+for a in range(1,11):
+    K_MEANS=KMeans(n_clusters=a,random_state=2)
+    K_MEANS.fit(DATA)
+    INERTIA.append(K_MEANS.inertia_)
+# 10 MODELS 10 INERTIA VALUES....    
+
+---
+HIERARCHICAL CLUSTERING :-
+from scipy.cluster.hierarchy import dendrogram,linkage
+
+# DENDROGRAM :
+DENDROGRAM = dendrogram(linkage(DATA,method="ward"))# method="ward","single"
+
+
+---
+ HIERARCHICAL CLUSTERING :-
+
+from sklearn.cluster import AgglomerativeClustering
+HC=AgglomerativeClustering(n_clusters=4,metric="euclidean",linkage="single")
+CLUSTERS = HC.fit_predict(DATA)
+CLUSTERS
+
+---
+
+DBSCAN:-
+
+from sklearn.cluster import DBSCAN
+DBS=DBSCAN(eps=0.5,min_samples=3)
+CLUSTERS = DBS.fit_predict(DATA)
+CLUSTERS
+
+---
+
+ASSOCIATION RULE APRIORI ALGORITHM :-
+# APPLY APRIORI :
+from mlxtend.frequent_patterns import apriori
+
+# Find frequent itemsets with min support 0.5 (50%)
+frequent_itemsets = apriori(DATA, min_support=0.2, use_colnames=True)
+print(frequent_itemsets)
+
+---
+
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+
+---
+
+import pandas as pd
+
+# Suppose your DataFrame is called df
+# And funny_indian_usernames is the list of 100 usernames
+
+# Make sure the list length matches the number of rows in df
+# Insert the new column 'FunnyUsernames' at index 1
+df.insert(1, 'FunnyUsernames', funny_indian_usernames)
+
+# Check result
+print(df.head())
+
+---
+
